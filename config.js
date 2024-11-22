@@ -17,6 +17,12 @@ global.owner = [
 global.botname = '𝗪𝗮𝗶𝗳𝘂𝗛-𝗕𝗼𝘁 ☁️'
 global.wm = '© ᥕᥲі𝖿ᥙһ-ᑲ᥆𝗍-mძ'
 
+//Información del bot
+global.vs = '1.0 (Beta)'
+global.libreria = 'Baileys'
+global.baileys = '^6.7.5'
+global.sessions = 'WaifuSession'
+
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
   unwatchFile(file)
