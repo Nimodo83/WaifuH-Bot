@@ -96,15 +96,15 @@ const question = (texto) => new Promise((resolver) => rl.question(texto, resolve
 
 let opcion
 if (methodCodeQR) {
-opcion = '1'
+opcion = 'Q'
 }
 if (!methodCodeQR && !methodCode && !fs.existsSync(`./${sessions}/creds.json`)) {
 do {
-opcion = await question(colores('Seleccione una opción:\n') + opcionQR('1. Con código QR\n') + opcionTexto('2. Con código de texto de 8 dígitos\n--> '))
+opcion = await question(colores('Seleccione una opción:\n') + opcionQR('Q. Con código QR\n') + opcionTexto('C. Con texto de texto de 8 dígitos\n--> '))
 
-if (!/^[1-2]$/.test(opcion)) {
-console.log(chalk.bold.redBright(`🚩 No se permiten numeros que no sean 1 o 2, tampoco letras o símbolos especiales.`))
-}} while (opcion !== '1' && opcion !== '2' || fs.existsSync(`./${sessions}/creds.json`))
+if (!/^[Q-C]$/.test(opcion)) {
+console.log(chalk.bold.redBright(`🌺 No se permiten letras que no sean Q o C, tampoco numeros o símbolos especiales.`))
+}} while (opcion !== 'Q' && opcion !== 'C' || fs.existsSync(`./${sessions}/creds.json`))
 } 
 
 const filterStrings = [
@@ -122,9 +122,9 @@ console.debug = () => {}
 
 const connectionOptions = {
 logger: pino({ level: 'silent' }),
-printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
+printQRInTerminal: opcion == 'Q' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
-browser: opcion == '1' ? [`${nameqr}`, 'Edge', '20.0.04'] : methodCodeQR ? [`${nameqr}`, 'Edge', '20.0.04'] : ['Ubuntu', 'Edge', '110.0.1587.56'], 
+browser: opcion == 'Q' ? [`WaifuH-Bot`, 'Edge', '20.0.04'] : methodCodeQR ? [`WaifuH-Bot`, 'Edge', '20.0.04'] : ['Ubuntu', 'Edge', '110.0.1587.56'], 
 auth: {
 creds: state.creds,
 keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -145,9 +145,9 @@ version: [2, 3000, 1015901307],
 global.conn = makeWASocket(connectionOptions);
 
 if (!fs.existsSync(`./${sessions}/creds.json`)) {
-if (opcion === '2' || methodCode) {
+if (opcion === 'C' || methodCode) {
 
-opcion = '2'
+opcion = 'C'
 if (!conn.authState.creds.registered) {  
 if (MethodMobile) throw new Error('No se puede usar un código de emparejamiento con la API móvil')
 
@@ -155,17 +155,17 @@ let numeroTelefono
 if (!!phoneNumber) {
 numeroTelefono = phoneNumber.replace(/[^0-9]/g, '')
 if (!Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
-console.log(chalk.bgBlack(chalk.bold.greenBright(`🚩 Por favor, Ingrese el número de WhatsApp.\n${chalk.bold.yellowBright(`☁️  Ejemplo: 57321×××××××`)}\n${chalk.bold.magentaBright('---> ')}`)))
+console.log(chalk.bgBlack(chalk.bold.greenBright(`🌻 Por favor, Ingrese el número de WhatsApp.\n${chalk.bold.yellowBright(`⭐️ Ejemplo: 521343×××××××`)}\n${chalk.bold.magentaBright('---> ')}`)))
 process.exit(0)
 }} else {
 while (true) {
-numeroTelefono = await question(chalk.bgBlack(chalk.bold.greenBright(`🚩 Por favor, escriba su número de WhatsApp.\n☁️  Ejemplo: 57321×××××××\n`)))
+numeroTelefono = await question(chalk.bgBlack(chalk.bold.greenBright(`🌻 Por favor, escriba su número de WhatsApp.\n⭐️  Ejemplo: 521343×××××××\n`)))
 numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '')
 
 if (numeroTelefono.match(/^\d+$/) && Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
 break 
 } else {
-console.log(chalk.bgBlack(chalk.bold.greenBright(`🚩 Por favor, escriba su número de WhatsApp.\n☁️  Ejemplo: 57321×××××××\n`)))
+console.log(chalk.bgBlack(chalk.bold.greenBright(`🌻 Por favor, escriba su número de WhatsApp.\n⭐️  Ejemplo: 521343×××××××\n`)))
 }}
 rl.close()  
 } 
@@ -202,12 +202,11 @@ global.timestamp.connect = new Date;
 }
 if (global.db.data == null) loadDatabase();
 if (update.qr != 0 && update.qr != undefined || methodCodeQR) {
-if (opcion == '1' || methodCodeQR) {
+if (opcion == 'Q' || methodCodeQR) {
 console.log(chalk.bold.yellow(`\n✨️ ESCANEA ESTE CÓDIGO QR`))}
 }
 if (connection == 'open') {
-console.log(boxen(chalk.bold(' ¡CONECTADO CON WHATSAPP! '), { borderStyle: 'round', borderColor: 'green', title: chalk.green.bold('● CONEXIÓN ●'), titleAlignment: '', float: '' }))
-await joinChannels(conn)}
+console.log(boxen(chalk.bold(' ¡CONECTADO CON WHATSAPP! '), { borderStyle: 'round', borderColor: 'green', title: chalk.green.bold('● CONEXIÓN ●'), titleAlignment: '', float: '' }))}
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
 if (connection === 'close') {
 if (reason === DisconnectReason.badSession) {
@@ -435,8 +434,3 @@ await purgeOldFiles()
 console.log(chalk.bold.cyanBright(`\nARCHIVOS RESIDUALES ELIMINADAS`))}, 1000 * 60 * 10)
 
 _quickTest().then(() => conn.logger.info(chalk.bold(`🔵  H E C H O\n`.trim()))).catch(console.error)
-
-async function joinChannels(conn) {
-for (const channelId of Object.values(global.ch)) {
-await conn.newsletterFollow(channelId).catch(() => {})
-}}
