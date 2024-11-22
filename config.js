@@ -8,8 +8,8 @@ import axios from 'axios'
 import moment from 'moment-timezone' 
 
 global.owner = [
-['5213318360934', 'Owner 👑', true],
-['5218713339906', 'Desarrollador 🍭', true],
+['5213318360934', 'Creador 👑', true],
+['5218713339906', 'Owner 🍭', true],
 ['5218711426787', 'Colaborador 🐢', true]
 ] //Agrega tu número aquí.
 
