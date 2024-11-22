@@ -22,6 +22,7 @@ global.vs = '1.0 (Beta)'
 global.libreria = 'Baileys'
 global.baileys = '^6.7.5'
 global.sessions = 'WaifuSession'
+global.languaje = 'Español'
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
