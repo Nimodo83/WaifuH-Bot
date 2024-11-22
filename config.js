@@ -16,6 +16,10 @@ global.owner = [
 //Nombre Bot
 global.botname = '𝗪𝗮𝗶𝗳𝘂𝗛-𝗕𝗼𝘁 ☁️'
 global.wm = '© ᥕᥲі𝖿ᥙһ-ᑲ᥆𝗍-mძ'
+global.author = 'Powered By Xi_Crew'
+global.dev = '© Create By Xi_Crew'
+global.textbot = 'WaifuH-Bot By Xi_Crew'
+global.packname = '⪛✰ 𝗪𝗮𝗶𝗳𝘂𝗛-𝗕𝗼𝘁 ✰⪜'
 
 //Información del bot
 global.vs = '1.0 (Beta)'
