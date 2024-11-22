@@ -96,15 +96,15 @@ const question = (texto) => new Promise((resolver) => rl.question(texto, resolve
 
 let opcion
 if (methodCodeQR) {
-opcion = 'Q'
+opcion = '1'
 }
 if (!methodCodeQR && !methodCode && !fs.existsSync(`./${sessions}/creds.json`)) {
 do {
-opcion = await question(colores('Seleccione una opción:\n') + opcionQR('Q. Con código QR\n') + opcionTexto('C. Con texto de texto de 8 dígitos\n--> '))
+opcion = await question(colores('Seleccione una opción:\n') + opcionQR('1. Con código QR\n') + opcionTexto('2. Con texto de texto de 8 dígitos\n--> '))
 
-if (!/^[Q-C]$/.test(opcion)) {
-console.log(chalk.bold.redBright(`🌺 No se permiten letras que no sean Q o C, tampoco numeros o símbolos especiales.`))
-}} while (opcion !== 'Q' && opcion !== 'C' || fs.existsSync(`./${sessions}/creds.json`))
+if (!/^[1-2]$/.test(opcion)) {
+console.log(chalk.bold.redBright(`🌺 No se permiten numero que no sean 1 o 2, tampoco letras o símbolos especiales.`))
+}} while (opcion !== '1' && opcion !== '2' || fs.existsSync(`./${sessions}/creds.json`))
 } 
 
 const filterStrings = [
@@ -122,9 +122,9 @@ console.debug = () => {}
 
 const connectionOptions = {
 logger: pino({ level: 'silent' }),
-printQRInTerminal: opcion == 'Q' ? true : methodCodeQR ? true : false,
+printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
-browser: opcion == 'Q' ? [`WaifuH-Bot`, 'Edge', '20.0.04'] : methodCodeQR ? [`WaifuH-Bot`, 'Edge', '20.0.04'] : ['Ubuntu', 'Edge', '110.0.1587.56'], 
+browser: opcion == '1' ? [`WaifuH-Bot`, 'Edge', '20.0.04'] : methodCodeQR ? [`WaifuH-Bot`, 'Edge', '20.0.04'] : ['Ubuntu', 'Edge', '110.0.1587.56'], 
 auth: {
 creds: state.creds,
 keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -145,9 +145,9 @@ version: [2, 3000, 1015901307],
 global.conn = makeWASocket(connectionOptions);
 
 if (!fs.existsSync(`./${sessions}/creds.json`)) {
-if (opcion === 'C' || methodCode) {
+if (opcion === '2' || methodCode) {
 
-opcion = 'C'
+opcion = '2'
 if (!conn.authState.creds.registered) {  
 if (MethodMobile) throw new Error('No se puede usar un código de emparejamiento con la API móvil')
 
@@ -202,7 +202,7 @@ global.timestamp.connect = new Date;
 }
 if (global.db.data == null) loadDatabase();
 if (update.qr != 0 && update.qr != undefined || methodCodeQR) {
-if (opcion == 'Q' || methodCodeQR) {
+if (opcion == '1' || methodCodeQR) {
 console.log(chalk.bold.yellow(`\n✨️ ESCANEA ESTE CÓDIGO QR`))}
 }
 if (connection == 'open') {
