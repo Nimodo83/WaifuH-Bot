@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 const handler = async (m, {conn, text, usedPrefix, command}) => {
-if (!text) return conn.reply(m.chat, `🚩 *Ingrese el nombre de un repositorio de github*\n\nEjemplo, ${usedPrefix + command} Cuervo-Team-Supreme`, m, rcanal)
+if (!text) return conn.reply(m.chat, `🚩 *Ingrese el nombre de un repositorio de github*\n\nEjemplo, ${usedPrefix + command} WaifuH-Bot`, m, rcanal)
 try {
 await m.react(rwait)
 const res = await fetch(global.API('https://api.github.com', '/search/repositories', {
