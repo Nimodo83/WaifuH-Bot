@@ -4,6 +4,7 @@ import { levelup } from '../lib/canvas.js'
 let handler = m => m
 handler.before = async function (m, { conn, usedPrefix }) {
 
+let redes = ['global.channel', 'global.grupo', 'global.git'].getRandom()
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let perfil = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://qu.ax/QGAVS.jpg')
 let mentionedJid = [who]
