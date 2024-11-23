@@ -58,7 +58,7 @@ await m.react('✖️')
 handler.help = ['allmenu']
 handler.tags = ['main']
 handler.command = ['menu', 'help', 'menú', 'allmenú', 'allmenu', 'menucompleto'] 
-handler.register = true
+//handler.register = true
 export default handler
 
 const more = String.fromCharCode(8206)
