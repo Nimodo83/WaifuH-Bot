@@ -23,6 +23,7 @@ global.dev = '© Create By Xi_Crew'
 global.textbot = 'WaifuH-Bot Powered By Xi_Crew'
 
 //Información del bot
+global.isBaileysFail = false
 global.vs = '1.0 (Beta)'
 global.libreria = 'Baileys'
 global.baileys = '^6.7.5'
