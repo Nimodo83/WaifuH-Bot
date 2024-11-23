@@ -33,7 +33,7 @@ global.languaje = 'Español'
 // Enlaces WaifuH-Bot 
 global.channel = 'https://whatsapp.com/channel/0029VaspIib2ER6gHE5Z1G0G'
 global.grupo = 'https://chat.whatsapp.com/EuDfTPrTaYGH1pH5x1loXP'
-global.git = 'https://github.com/Nimodo83/WaifuH-Bot"
+global.git = 'https://github.com/Nimodo83/WaifuH-Bot'
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
