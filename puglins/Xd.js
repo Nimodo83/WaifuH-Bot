@@ -1,1 +1,0 @@
-eres gey y puto
