@@ -1,4 +1,12 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '1'
+// Este Archivo
+//             SIGA X1 ...
+// Es el inicio del Bot.
+//             SIGA X2 ...
+// Si editas este código
+//             SIGA X3 ...
+// debes saber lo que haces.
+
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
 import './config.js'
 import {createRequire} from 'module'
 import path, {join} from 'path'
@@ -49,7 +57,7 @@ global.timestamp = {start: new Date}
 const __dirname = global.__dirname(import.meta.url)
 
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
-global.prefix = new RegExp('^[/.$#!]')
+global.prefix = new RegExp('^[#]')
 // global.opts['db'] = process.env['db']
 
 global.db = new Low(/https?:\/\//.test(opts['db'] || '') ? new cloudDBAdapter(opts['db']) : new JSONFile('src/database/database.json'))
